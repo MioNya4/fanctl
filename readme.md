@@ -1,14 +1,6 @@
-# UPDATE
-
-1) get ur ec_probe working by instructions below
-
-2) download fanctl2.sh and run it as root
-
-3) done! control ur fans speed with a "performance" button near the power button, 0 led is mode 1, 1 led is mode 2 and both leds means mode 3 (modes speed description below)
-
 # fanctl
 
-fanctl is a compact behind-suckless driver for controlling both fans of intel nuc x15 (also known as LAPKC71F, LAPKC71E, LAPKC51E, ADATA XPG Xenia 15, AVELL idk what model but there is, TUXEDO Stellaris 15 gen 3 and others)
+fanctl is a compact behind-suckless driver for controlling both fans of intel nuc x15 (also known as maibenben x568, LAPKC71F, LAPKC71E, LAPKC51E, ADATA XPG Xenia 15, AVELL idk what model but there is, TUXEDO Stellaris 15 gen 3 and others)
 
 # installation
 
@@ -20,16 +12,23 @@ First u wanna some way to write to ec memory. You can
 1b) download ur kernel's sources and https://github.com/musikid/acpi_ec, `cd acpi_ec ; ./install.sh ; modprobe acpi_ec`
 this will create /dev/ec which my driver works with.
 
-2a) (not recommended) download fanctl binary and run like `chmod +x fanctl ; fanctl 2`
-2b) download fanctl.c, run `gcc fanctl.c` and rename a.out to what makes sense 2u
+2) (c version is deprecated since u need to reopen file each time u wanna read performance button state, and thats not efficient. bash version (fanctl2.sh) is more efficient atm)
+
+download fanctl2.sh and... run it?
 
 # usage
 
-`./fanctl 1`
+`sh fanctl2.sh`
 
-where `1` can be 1, 2 or 3. `1` will make fans spinning like 1450-2200 (quiet mode), `2` is like 2200-3100 (still quiet but cooler) and `3` is 3000-4000 (a lil noisy). notice that `4` will make zero delay for writing to registers and will shutdown your machine immediately. 
+control ur fans speed with a "performance" button near the power button, 0 led is mode 1, 1 led is mode 2 and both leds means mode 3 (modes speed description below)
 
-do not run without arguments (mostly sigsegv)
+"performance" button has 3 states: 1, 2 and 3. `1` will make fans spinning like 1450-2200 (quiet mode), `2` is like 2200-3100 (still quiet but cooler) and `3` is 3000-5500 (a lil noisy)
+
+fan speed can be observed with `sensors` if https://github.com/pobrn/qc71_laptop module is loaded. with atmosphere pressure maximum i got is 5500rpm.
+
+adjust values of `sleep` command for results that suit u. `3.5`, `2.2` and `1` work perfect 4me. less sleep means faster fans (0 sleep will shutdown your machine immediately idk why xd). 
+
+do not run on devices that are not intel(c) nuc x15, even tho the worst thing can happen is immediate shutdown, so there is no way u damage ur hardware, im still not responsible for anything.
 
 # also
 
