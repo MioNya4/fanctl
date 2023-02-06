@@ -1,3 +1,11 @@
+# UPDATE
+
+1) get ur ec_probe working by instructions below
+
+2) download fanctl2.sh and run it as root
+
+3) done! control ur fans speed with a "performance" button near the power button, 0 led is mode 1, 1 led is mode 2 and both leds means mode 3 (modes speed description below)
+
 # fanctl
 
 fanctl is a compact behind-suckless driver for controlling both fans of intel nuc x15 (also known as LAPKC71F, LAPKC71E, LAPKC51E, ADATA XPG Xenia 15, AVELL idk what model but there is, TUXEDO Stellaris 15 gen 3 and others)
