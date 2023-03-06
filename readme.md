@@ -5,7 +5,6 @@ fanctl is a compact behind-suckless driver for controlling both fans of intel nu
 # installation
 
 do everything as root (always. its cool, u'll like it ^-^)
-First u wanna some way to write to ec memory. You can 
 
 1) download ur kernel's sources and https://github.com/musikid/acpi_ec, `cd acpi_ec ; ./install.sh ; modprobe acpi_ec`
 this will create /dev/ec which my driver works with.
@@ -22,9 +21,13 @@ this will create /dev/ec which my driver works with.
 
 fan speed can be observed with `sensors` if qc71_laptop module is loaded. with atmosphere pressure maximum i got is 5500rpm.
 
-do not run on devices that are not intel(c) nuc x15, even tho the worst thing can happen is immediate shutdown, so there is no way u damage ur hardware, im still not responsible for anything.
+Changing rpm from 0 to 5000 (or from 5000 to 0) can take UP TO 2 MINUTES! Thats not a bug!
 
 # also
+
+if for some reason u cant install qc71_laptop, use fanctl2.0.sh. it doesnt require qc, but it uses sleep values between writing to ec for controlling rpm. 
+
+do not run on devices that are not intel(c) nuc x15, even tho the worst thing can happen is immediate shutdown, so there is no way u damage ur hardware, im still not responsible for anything.
 
 this driver is totally safe to use because ec memory resets on shutdown (i think). 
 
