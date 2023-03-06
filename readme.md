@@ -27,6 +27,8 @@ Changing rpm from 0 to 5000 (or from 5000 to 0) can take UP TO 2 MINUTES! Thats 
 
 if for some reason u cant install qc71_laptop, use fanctl2.0.sh. it doesnt require qc, but it uses sleep values between writing to ec for controlling rpm. 
 
+version 2.0 seems more stable btw, and it also has to me more efficient, but it can not hold a certain rpm value, instead it holds a certain fan voltage, but thats fine 4me so i use 2.0 xd
+
 do not run on devices that are not intel(c) nuc x15, even tho the worst thing can happen is immediate shutdown, so there is no way u damage ur hardware, im still not responsible for anything.
 
 this driver is totally safe to use because ec memory resets on shutdown (i think). 
