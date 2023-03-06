@@ -7,26 +7,20 @@ fanctl is a compact behind-suckless driver for controlling both fans of intel nu
 do everything as root (always. its cool, u'll like it ^-^)
 First u wanna some way to write to ec memory. You can 
 
-1a) (not tested) compile your kernel with CONFIG_ACPI_EC_DEBUGFS=y, this will generate ec_sys. then u `modprobe ec_sys write_support=1` and that should create some file somewhere in /sys/ but u might try `ec_probe write 0x60 0x10` and if ur fans started working for a few seconds then u succeded
-
-1b) download ur kernel's sources and https://github.com/musikid/acpi_ec, `cd acpi_ec ; ./install.sh ; modprobe acpi_ec`
+1) download ur kernel's sources and https://github.com/musikid/acpi_ec, `cd acpi_ec ; ./install.sh ; modprobe acpi_ec`
 this will create /dev/ec which my driver works with.
 
-2) (c version is deprecated since u need to reopen file each time u wanna read performance button state, and thats not efficient. bash version (fanctl2.sh) is more efficient atm)
+2) install qc71_laptop from https://github.com/pobrn/qc71_laptop (it has How to install in readme)
 
-download fanctl2.sh and... run it?
+3) download fanctl2.1.sh and... run it?
 
 # usage
 
-`sh fanctl2.sh`
+`sh fanctl2.1.sh`
 
-control ur fans speed with a "performance" button near the power button, 0 led is mode 1, 1 led is mode 2 and both leds means mode 3 (modes speed description below)
+"performance" button (a lil cute button right next to power button) has 3 states: 1, 2 and 3, in shell code you will see 3 different tg= values (2000, 3000 and 5000). these are rpm values that this driver will try to keep (+-100) (and you can modify them!)
 
-"performance" button has 3 states: 1, 2 and 3. `1` will make fans spinning like 1450-2200 (quiet mode), `2` is like 2200-3100 (still quiet but cooler) and `3` is 3000-5500 (a lil noisy)
-
-fan speed can be observed with `sensors` if https://github.com/pobrn/qc71_laptop module is loaded. with atmosphere pressure maximum i got is 5500rpm.
-
-adjust values of `sleep` command for results that suit u. `3.5`, `2.2` and `1` work perfect 4me. less sleep means faster fans (0 sleep will shutdown your machine immediately idk why xd). 
+fan speed can be observed with `sensors` if qc71_laptop module is loaded. with atmosphere pressure maximum i got is 5500rpm.
 
 do not run on devices that are not intel(c) nuc x15, even tho the worst thing can happen is immediate shutdown, so there is no way u damage ur hardware, im still not responsible for anything.
 
