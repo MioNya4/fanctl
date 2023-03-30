@@ -1,23 +1,22 @@
-#!/bin/sh
+#!/bin/bash
 
 
 
 
 while [[ 1 ]]
 do
-    LVL="$(ec_probe read 0x6A | cut -c 1-2)"
-    if [[ $LWL == 30 or $LWL == 5 ]]
+    LWL="$(ec_probe read 0x6A | cut -c 1-2)"
+    if [[ $LWL == 30 || $LWL == 5 ]]
     then
         tg=2000
-    elif [[ $LWL == 45 or $LWL == 10 ]]
+    elif [[ $LWL == 45 || $LWL == 10 ]]
     then
         tg=3000
-    elif [[ $LWL == 65 or $LWL == 15 ]]
+    elif [[ $LWL == 65 || $LWL == 15 ]]
     then
         tg=5000
     else
-        echo "button state not recognized, do you have ec_sys installed? are you root? do u have LAPKC*1* machine?"
-        exit 1
+        echo "button state \"$LWL\" not recognized, do you have ec_sys installed? are you root? do u have LAPKC*1* machine?"
     fi
     
     rtg="$(sensors | grep fan2: | cut -c 14-17)"
